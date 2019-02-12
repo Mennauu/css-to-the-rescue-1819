@@ -47,9 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 
-h1 {
-  font-size: 4rem;
-}
+h1 { font-size: 4rem; }
 
 p {
   font-size: 1.5em;
@@ -81,52 +79,74 @@ small { font-size: 80%; }
 /********************************
 *         5. Containers         *
 *********************************/
-.burger-container {
-  padding: 1em;
+.container { 
+  max-width: 1100px; 
+  margin: auto;
   display: flex;
-  flex-wrap: wrap;
+  padding: 8em 1em;
   align-items: center;
-  justify-content: center;
 }
 
 /********************************
 *         6. sections           *
 *********************************/
 .burger-section { 
-  min-height: 50vh; 
+  height: 80vh; 
+  position: relative;
 }
 
-.burger-section .svg-border {
+.burger-section:before,
+.burger-section:after {
+  content: "";
   mask-image: url('../images/header.svg');
   -webkit-mask-image: url('../images/header.svg'); /* Necessary! */
   mask-size: cover;
   -webkit-mask-size: cover; /* Necessary! */
   background-color: var(--white);
-  height: 7em;
+  fill: #fff;
   width: 100%;
+  height: 5.8em;
+  position: absolute;
 }
 
-.burger-section .svg-border.bottom {
+.burger-section:before { top: 0; }
+
+.burger-section:after {
   transform: rotate(180deg);
+  bottom: 0;
 }
 
 /********************************
 *         7. Burgers            *
 *********************************/
-/* Cheeseburger */
-.cheeseburger {
-  max-width: 200px;
+.burger {
   width: 100%;
+  max-width: 200px;
+  transition: 0.43s;
+  position: relative;
+}
+
+.burger:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: calc((83 / 100) * 100%);
+}
+
+.burger > .burger-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: 0.43s;
-  flex: 1 0 40%;
 }
 
-.cheeseburger:hover { cursor: pointer; }
+.burger:hover { cursor: pointer; }
 
-.top-bun, .seeds, .tomatos, .tomato-slice, .lettuce, .pickles, .pickle, .cheese, .bacon, .burger {
+.top-bun, .seeds, .tomatos, .tomato-slice, .lettuce, .pickles, .pickle, .cheese, .bacon, .meat {
   position: relative;
 }
 
@@ -134,7 +154,8 @@ small { font-size: 80%; }
   background-color: #f49b2f;
   border-top: 2px solid #F78F2F;
   border-bottom: 1px solid #F78F2F;
-  height: 60px;
+  min-height: 6.2vh;
+  max-height: 40vh;
   border-radius: 70% 70% 12% 12%;
   width: 90%;
   z-index: 20;
@@ -143,7 +164,7 @@ small { font-size: 80%; }
 
 .seeds {
   background-color: #FFE368;
-  height: 8px;
+  height: 0.82vh;
   width: 5px;
   border-radius: 50%;
   transform: rotate(80deg);
@@ -168,7 +189,7 @@ small { font-size: 80%; }
   content: "";
   background-color: #FFE368;
   border-radius: 50%;
-  height: 8px;
+  height: 0.82vh;
   width: 5px;
   transform: rotate(190deg);
   position: absolute;
@@ -186,7 +207,7 @@ small { font-size: 80%; }
 .tomato-slice {
   background-color: #ea5659;
   border-radius: 47%;
-  height: 28px;
+  height: 2.89vh;
   flex: 1;
   border-bottom: 5px solid #eb3f3f;
   border-top: 1px solid #eb3f3f;
@@ -197,7 +218,7 @@ small { font-size: 80%; }
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   position: absolute;
   width: 80%;
-  height: 18px;
+  height: 1.86vh;
   background-color: #eb3f3f;
   top: 0; left: 0; bottom: 0; right: 0;
   margin: auto;
@@ -221,14 +242,14 @@ small { font-size: 80%; }
 
 .lettuce {
   z-index: 10;
-  height: 46px;
+  height: 4.47vh;
   width: 106%;
   margin-top: -36px;
   transition: margin-top 1s;
 }
 
 .lettuce-leaf:first-of-type {
-  height: 40px;
+  height: 4.13vh;
   width: 96%;
   background-color: #7cbb52;
   clip-path: polygon(100% 100%, 95% 100%, 85% 100%, 60% 100%, 37% 100%, 25% 100%, 0 71%, 0 26%, 18% 0, 100% 19%);
@@ -237,7 +258,7 @@ small { font-size: 80%; }
 
 .lettuce-leaf:nth-child(2) {
   background-color: #56a234;
-  height: 34px;
+  height: 3.51vh;
   width: 102%;
   clip-path: polygon(100% 100%, 95% 100%, 65% 60%, 62% 60%, 37% 100%, 35% 100%, 0 49%, 0 33%, 0 0, 99% 0);
   z-index: 11;
@@ -255,7 +276,7 @@ small { font-size: 80%; }
 
 .pickle {
   background-color: #9ea555;
-  height: 30px;
+  height: 3.3vh;
   flex: 1;
   border-radius: 44%;
   border-top: 1px solid #7e8444;
@@ -272,7 +293,7 @@ small { font-size: 80%; }
 .pickle-seeds {
   background-color: #B0B767;
   width: 3px;
-  height: 3px;
+  height: 0.31vh;
   border-radius: 20% / 50%;
   position: absolute; 
   margin: auto;
@@ -283,7 +304,7 @@ small { font-size: 80%; }
   content: "";
   background-color: #B0B767;
   width: 3px;
-  height: 3px;
+  height: 0.31vh;
   left: 8px;
   border-radius: 20% / 50%;
   position: absolute;
@@ -293,7 +314,7 @@ small { font-size: 80%; }
   content: "";
   background-color: #B0B767;
   width: 3px;
-  height: 3px;
+  height: 0.31vh;
   top: 5px;
   left: 4px;
   border-radius: 20% / 50%;
@@ -302,7 +323,7 @@ small { font-size: 80%; }
 
 .cheese {
   background-color: #fdc64b;
-  height: 60px;
+  height: 6.19vh;
   width: 90%;
   border-radius: 50% 3% / 10% 40%;
   border-bottom: 4px solid #fdd181;
@@ -316,7 +337,7 @@ small { font-size: 80%; }
 }
 
 .bacon {
-  height: 30px;
+  height: 3.1vh;
   width: 88%;
   z-index: 7;
   margin-top: -32px;
@@ -325,7 +346,7 @@ small { font-size: 80%; }
 
 .bacon-slice {
   background-color: #aa7272;
-  height: 50px;
+  height: 5.16vh;
   clip-path: polygon(13% 34%, 7% 43%, 8% 51%, 9% 57%, 13% 63%, 18% 66%, 22% 65%, 38% 60%, 48% 57%, 54% 57%, 59% 56%, 66% 57%, 71% 58%, 74% 60%, 78% 61%, 83% 62%, 88% 59%, 91% 54%, 92% 50%, 92% 45%, 91% 39%, 89% 35%, 86% 32%, 69% 30%, 53% 30%, 41% 31%, 31% 31%, 21% 33%, 10% 38%, 19% 34%);
   border-bottom: 24px double #894647;
   position: relative;
@@ -344,11 +365,11 @@ small { font-size: 80%; }
   transform: rotate(0deg);
 }
 
-.burger {
+.meat {
   background-color: #6d4b33;
   border-top: 5px solid #784C33;
   border-bottom: 1px solid #57351A;
-  height: 45px;
+  height: 4.64vh;
   width: 93%;
   border-radius: 5% / 50%;
   margin-top: -18px;
@@ -360,23 +381,23 @@ small { font-size: 80%; }
   border-top: 5px solid #efba43;
   border-bottom: 1px solid #F78F2F;
   width: 90%;
-  height: 40px;
+  height: 4.13vh;
   border-radius: 5% / 50%;
   margin-top: -4px;
   transition: margin-top 1s;
 }
 
 /* All Transitions */
-.cheeseburger:hover .tomatos,
-.cheeseburger:hover .pickles,
-.cheeseburger:hover .cheese,
-.cheeseburger:hover .bottom-bun,
-.cheeseburger:hover .bacon,
-.cheeseburger:hover .lettuce { 
+.burger:hover .tomatos,
+.burger:hover .pickles,
+.burger:hover .cheese,
+.burger:hover .bottom-bun,
+.burger:hover .bacon,
+.burger:hover .lettuce { 
   margin-top: 20px; 
   transition: margin-top 1s; 
 }
-.cheeseburger:hover .burger { 
+.burger:hover .meat { 
   margin-top: 40px; 
   transition: margin-top 1s; 
 }
@@ -384,36 +405,3 @@ small { font-size: 80%; }
 /********************************
 *       8. Miscellaneous        *
 *********************************/
-
-.bottom {
-  position: absolute;
-  bottom: 0;
-}
-
-.font-weight-normal {
-  font-weight: normal;
-}
-
-
-/* Here we create a curly line
-   Source: https://jsbin.com/hotugu/3/edit?html,css,output */
-.line-holder {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  height: 30px;
-}
-
-.circle {
-  position: absolute;
-  width: 200px;
-  height: 20px;
-  background: radial-gradient(16px, transparent, transparent 4px, black 4px, black 10px, transparent 11px);
-  background-size: 30px 40px;
-}
-
-.circle2 {
-  top: 20px;
-  left: 15px;
-  background-position: 0px -20px;
-}
