@@ -9,10 +9,19 @@
 *      1. Custom properties     *
 *********************************/
 :root {
+  /* colors */
  --white: #fff;
  --light-gray: #f2f2f2;
  --black: #212529;
  --brown: #a0522d;
+ --red: #ff0000;
+ --border-radius: 5px;
+
+ /* Fonts */
+ --font-nt-sans: "Nunito sans", Roboto, "Helvetica Neue", Calibri;
+ --font-indie-flower: 'Indie Flower', Roboto, "Helvetica Neue", Calibri;
+ --font-pacifio: 'Pacifico', Roboto, "Helvetica Neue", Calibri;
+ --font-oleo-script-swash-caps: 'Oleo Script Swash Caps', Roboto, "Helvetica Neue", Calibri;
 }
 
 /********************************
@@ -20,18 +29,17 @@
 *********************************/
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {box-sizing: border-box;}
 
-html { font-size: 16px; }
+html {font-size: 16px;}
 
 body {
   margin: 0;
-  font-family: 'Indie Flower', "Nunito sans", Roboto, "Helvetica Neue", Calibri;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-family: var(--font-indie-flower);
+  font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1100 - 300)));
+  line-height: calc(1.5em + (1.5 - 1.2) * ((100vw - 300px)/(1100 - 300)));
   color: var(--black);
-  background-color: var(--brown);
-  /* background-image: url('../images/bg-pattern.png'); */
+  background-color: var(--white);
 }
 
 ul {
@@ -44,16 +52,17 @@ ul {
 *        3. Typography          *
 *********************************/
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+  font-family: var(--font-oleo-script-swash-caps);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.3em;
 }
 
-h1 { font-size: 4rem; }
+h1 {font-size: calc(28px + (46 - 28) * ((100vw - 300px) / (1600 - 300)));}
 
 p {
-  font-size: 1.5em;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 a { 
@@ -72,28 +81,40 @@ small { font-size: 80%; }
 *         4. Top Header         *
 *********************************/
 .header {
-  padding: 1em 0.5em;
+  padding: 1em 0.5em 0 0.5em;
   background-color: var(--white);
   text-align: center;
+  position: relative;
+  z-index: 20;
 }
+
+.header h1 {margin-top: 0;}
+.header p {margin-bottom: 0;}
 
 /********************************
 *         5. Containers         *
 *********************************/
 .container { 
-  max-width: 800px; 
+  max-width: 1200px; 
   margin: auto;
-  padding: 8em 1em;
+  padding: 8em 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+}
+
+.container > div { 
+  flex: 1 0 12em;
+  margin: 0 1em;
 }
 
 /********************************
 *         6. sections           *
 *********************************/
 .burger-section { 
-  height: 200vh;
   position: relative;
+  margin-top: -2em;
+  background-color: #443F45;
 }
 
 .burger-section:before,
@@ -102,34 +123,53 @@ small { font-size: 80%; }
   height: 5.8em;
   width: 100%;
   mask-image: url('../images/header.svg');
-  -webkit-mask-image: url('../images/header.svg'); /* Necessary! */
+  -webkit-mask-image: url('../images/header.svg'); /* Necessary */
   mask-size: cover;
-  -webkit-mask-size: cover; /* Necessary! */
+  -webkit-mask-size: cover; /* Necessary */
   background-color: var(--white);
-  fill: #fff;
   position: absolute;
 }
 
-.burger-section:before { top: 0; }
-
+.burger-section:before {top: -1px;}
 .burger-section:after {
   transform: rotate(180deg);
   bottom: 0;
 }
 
+.burger-section:nth-child(2) {
+  /* background-image: url('../images/dust-5s-1000x200px.svg') */
+}
+
+.burger-section:nth-child(3) {
+  background-color: #e74c3c;
+}
+
 /********************************
-*         7. Burgers            *
+*       7. Pricing Area         *
 *********************************/
+.price {
+  font-size: 3rem;
+  text-align: right;
+  font-weight: bold;
+}
+
+/********************************
+*         8. Burgers            *
+*********************************/
+
+/* Base */
 .burger {
-  width: 100%;
-  transition: 0.43s;
+  width: 96%;
+  transition: 1s;
   position: relative;
+  text-align: center;
+  /* perspective: 300px; */
 }
 
 .burger:before {
   content: "";
   width: 100%;
-  padding-top: calc((83 / 100) * 100%);
+  padding-top: calc((83 / 100) * 100%); /* Keep aspect ratio */
   display: block;
 }
 
@@ -144,8 +184,7 @@ small { font-size: 80%; }
   align-items: center;
 }
 
-.burger:hover { cursor: pointer; }
-
+/* Ingredients */
 .top-bun, .seeds, .tomatos, .tomato-slice, .lettuce, .pickles, .pickle, .cheese, .bacon, .bacon-slice, .meat {
   position: relative;
 }
@@ -200,8 +239,8 @@ small { font-size: 80%; }
   height: 18.1%;
   width: 100%;
   margin-top: -7.5%;
-  transition: margin-top 1s;
   display: flex;
+  z-index: 19;
 }
 
 .tomato-slice {
@@ -242,9 +281,8 @@ small { font-size: 80%; }
 
 .lettuce {
   height: 27.7%;
-  width: 106%;
+  width: 100%;
   margin-top: -18%;
-  transition: margin-top 1s;
   z-index: 10;
 }
 
@@ -258,7 +296,7 @@ small { font-size: 80%; }
 
 .lettuce-leaf:nth-child(2) {
   height: 74%;
-  width: 102%;
+  width: 100%;
   margin-top: -13%;
   background-color: #56a234;
   clip-path: polygon(100% 100%, 95% 100%, 65% 60%, 62% 60%, 37% 100%, 35% 100%, 0 49%, 0 33%, 0 0, 99% 0);
@@ -270,7 +308,6 @@ small { font-size: 80%; }
   width: 70%;
   margin-bottom: 2.5%;
   margin-top: -10%;
-  transition: margin-top 1s;
   z-index: 9;
   display: flex;
 }
@@ -332,7 +369,6 @@ small { font-size: 80%; }
   border-right: calc(1px + 0.4vmin) solid #fdd181;
   border-radius: 50% 3% / 10% 40%;
   margin-top: -27%;
-  transition: margin-top 1s;
   transform: rotate(-7deg);
   z-index: 8;
 }
@@ -340,67 +376,247 @@ small { font-size: 80%; }
 .bacon {
   height: 18.1%;
   width: 88%;
-  margin-top: -16%;
-  transition: margin-top 1s;
+  margin-top: -14%;
   z-index: 7;
 }
 
 .bacon-slice {
   height: 166.5%;
-  background-color: #aa7272;
-  border-bottom: calc(5px + 11vmin) double #894647;
+  background-color: #894647;
   clip-path: polygon(13% 34%, 7% 43%, 8% 51%, 9% 57%, 13% 63%, 18% 66%, 22% 65%, 38% 60%, 48% 57%, 54% 57%, 59% 56%, 66% 57%, 71% 58%, 74% 60%, 78% 61%, 83% 62%, 88% 59%, 91% 54%, 92% 50%, 92% 45%, 91% 39%, 89% 35%, 86% 32%, 69% 30%, 53% 30%, 41% 31%, 31% 31%, 21% 33%, 10% 38%, 19% 34%);
   transform: rotate(-5deg);
 }
 
-.bacon-slice:first-of-type { z-index: 15; }
+.bacon-slice:first-of-type {z-index: 15;}
 
 .bacon-slice:nth-child(2) {
   margin-top: -25%;
+  background-color: #aa7272;
 }
 
 .bacon-slice:nth-child(3) {
   margin-top: -33%;
-  transform: rotate(2deg);
+  background-color: #aa7272;
 }
 
 .meat {
   height: 23%;
   width: 93%;
   margin-top: -9%;
-  transition: margin-top 1s;
   background-color: #6d4b33;
   border-top: calc(2px + 1.5vmin) solid #784C33;
   border-bottom: calc(1px + 0.2vmin) solid #57351A;
   border-radius: 5% / 50%;
+  z-index: 6;
 }
 
 .bottom-bun {
   width: 90%;
   height: 20.4%;
   margin-top: -2%;
-  transition: margin-top 1s;
   background-color: #f49b2f;
   border-top: calc(1px + 0.8vmin) solid #efba43;
   border-bottom: calc(1px + 0.4vmin) solid #F78F2F;
   border-radius: 5% / 50%;
+  z-index: 5;
 }
 
-/* All Transitions */
-.burger:hover .tomatos,
-.burger:hover .pickles,
-.burger:hover .cheese,
-.burger:hover .bottom-bun,
-.burger:hover .bacon,
-.burger:hover .lettuce { 
-  margin-top: 10%;
-  transition: margin-top 1s; 
+/* Transitions */
+.burger div { transition: transform 1s; }
+.burger:hover div { transition: transform 1s; }
+
+.ingredient-name {
+  position: absolute;
+  z-index: 40;
+  font-size: 2em;
+  top: -70%;
+  width: 100%;
+  left: 0;
+  opacity: 0;
 }
-.burger:hover .meat { 
-  margin-top: 20%; 
-  transition: margin-top 1s; 
+
+/***** Cheeseburger *****/
+.cheeseburger:hover { 
+  transform: scale(0.4) translateY(-80%) translateX(-40%);
+  cursor: pointer;
 }
+
+.cheeseburger:hover .ingredient-name {
+  opacity: 1;
+  transition: opacity 0.75s 1s ease;
+}
+
+.cheeseburger:hover .top-bun {transform: translateX(45%) rotate3d(0, 1, 0.5, 3.142rad);}
+.cheeseburger:hover .tomatos {transform: translateY(210%) translateX(110%);}
+.cheeseburger:hover .lettuce {transform: translateY(120%) translateX(-25%);}
+.cheeseburger:hover .pickles {transform: translateY(450%) translateX(155%);}
+.cheeseburger:hover .cheese {transform: translateY(230%) translateX(-25%);}
+.cheeseburger:hover .bacon {transform: translateY(670%) translateX(125%);}
+.cheeseburger:hover .meat {transform: translateY(520%) translateX(-25%);}
+.cheeseburger:hover .bottom-bun {transform: translateY(730%) translateX(45%) rotate3d(0, 1, 0.5, 3.142rad);}
+
+/***** bbq-burger *****/
+.asteroid-burger { 
+  width: 90%;
+  animation: blastOff 5s infinite;
+}
+
+.asteroid-burger-seperator {
+  border-radius: 49%;
+  height: 20%;
+  width: 140%;
+  top: 54%;
+  border: 4vh solid #F78F2F;
+  position: absolute;
+  z-index: 8;
+  box-shadow: 0px 12px 0px 0px orange;
+}
+
+/* Animations */
+@keyframes blastOff {
+  0% { transform: rotate3d(1, 1, 1, 0deg); }
+  30% { transform: rotate3d(2, -1, -1, -0.23turn); }
+  40% { transform: rotate3d(2, -1, -1, -0.25turn) translateX(-420%); }
+  41% { transform: translateY(-2020%);}
+  42% { transform: translateY(1%) translateX(520%); }
+  60% { transform: translateY(0) translateX(0); }
+  63% { transform: translateX(-5%); }
+  66% { transform: translateX(5%); }
+  70% { transform: translateX(-5%); }
+  73% { transform: translateX(4%); }
+  77% { transform: translateX(-3%); }
+  80% { transform: translateX(2%); }
+  84% { transform: translateX(-1%); }
+  90% { transform: translateX(1%); }
+  100% { transform: translateX(0); }
+}
+
+.color-change-2x {
+  animation: color-change-2x 2s linear infinite alternate both;
+}
+
+@keyframes color-change-2x {
+  0% {background: #EDB91F;}
+  100% {background: #f4d578;}
+}
+
 
 /********************************
 *       8. Miscellaneous        *
 *********************************/
+
+.flag {
+  border-left: 4px solid brown;
+  height: 25%;
+  position: relative;
+  width: 20%;
+  z-index: 5;
+}
+
+.flag-line:first-of-type {
+  background-color: var(--red);
+  height: 20%;
+  width: 100%;
+}
+
+.flag-line:nth-child(2) {
+  background-color: #fff;
+  height: 20%;
+  width: 100%;
+}
+
+.flag-line:last-of-type {
+  background-color: blue;
+  height: 20%;
+  width: 100%;
+}
+
+.text-white {color: var(--white);}
+
+
+
+
+
+
+
+/* testing */
+
+.mo-fire {
+  height: auto;
+  position: absolute;
+  bottom: -50px;
+  z-index: 100;
+  width: 110%;
+}
+
+#svg-view {
+	width: 252px;
+	height: 125px;
+	left: 0px;
+}
+
+.mo-fire svg {
+  width: 100%;
+  height: auto;
+  position:relative;
+}
+.flame {
+  animation-name: flameDisappear;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.5;
+  transform-origin: 45% 45% 0;
+}
+.flame.one {
+  animation-delay: 1s;
+  animation-duration: 3s;
+}
+.flame.two{
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+
+.flame-main {
+  animation-name: flameMovement;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.flame-main.one {
+  animation-duration: 2.2s;
+  animation-delay: 1s;
+}
+.flame-main.two {
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+.flame-main.three {
+  animation-duration: 2.1s;
+  animation-delay: 3s;
+}
+.flame-main.four {
+  animation-duration: 3.2s;
+  animation-delay: 4s;
+}
+.flame-main.five {
+  animation-duration: 2.5s;
+  animation-delay: 5s;
+}
+@keyframes flameMovement {
+  50% {
+    transform: scale(0.98,1.0) translate(0, 2px) rotate(-1deg);
+  }
+}
+@keyframes flameDisappear {
+  0%{
+    transform: translate(0) rotate(180deg);
+  }
+  50% {
+     opacity: 1;
+  }
+  100% {
+    transform: translate(-10px, -40px) rotate(180deg);
+    opacity: 0;
+  }
