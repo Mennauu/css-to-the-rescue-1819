@@ -32,21 +32,20 @@
 ## Introduction
 This Hamburger restaurant menu is made as part of a course from [@cmda-minor-web 18-19](https://github.com/cmda-minor-web/css-to-the-rescue-1819). In this course I had to make a menu without any JavaScript. The idea was to write as much Vanilla HTML and CSS as possible. The end product is a menu full of animations, transitions and keyframe effects.
 
+### Live link
+[Live link to Github Pages](https://mennauu.github.io/css-to-the-rescue-1819/week3/)
+
 <!-- Maybe a table of contents here? 📚 -->
 ## Table of Contents
 
 - [Installation](#installation)
 - [Features](#features)
-- [Data](#data)
-  - [Retrieve](#retrieve)
-  - [Featured data](#featured-data)
 - [Checklist](#checklist)
 - [Credits](#credits)
 - [Sources](#sources)
-  - [API](#api)
-  - [Router](#router)
-  - [Async and await](#async-and-await)
-  - [General JavaScript](#general-javascript)
+  - [SVG](#svg)
+  - [Tools](#tools)
+  - [Documentation](#documentation)
 - [License](#license)
 
 <!-- How about a section that describes how to install this project? 🤓 -->
@@ -87,7 +86,7 @@ The site is mostly visual but includes a hover effect on one of the burgers, and
 ## Sources
 Underneath you will find some awesome sources that were used to create this product.
 
-### Svg
+### SVG
 - 🎇: [Fire animation](https://codepen.io/tahina/pen/WRXNwQ)
 - 🎇: [Asteroid animation](https://loading.io/pattern/dust)
 - 🎇: [Red pepper](https://codepen.io/tahina/pen/WRXNwQ)
