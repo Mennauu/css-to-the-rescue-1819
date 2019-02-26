@@ -617,7 +617,7 @@ small {font-size: 80%;}
 
 /* Svg taken from: https://codepen.io/tahina/pen/WRXNwQ */
 .fire {
-  /* background-image: url('../images/fire.svg'); */
+  background-image: url('../images/fire.svg');
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 50;
@@ -649,4 +649,4 @@ small {font-size: 80%;}
 .bg-black {background-color: var(--black);}
 .bg-roasted {background-color: var(--roasted);}
 /* Svg taken from https://loading.io/pattern/dust */
-/* .bg-asteroid {background-image: url('../images/dust-5s-1000x200px.svg')} */
+.bg-asteroid {background-image: url('../images/dust-5s-1000x200px.svg')}
