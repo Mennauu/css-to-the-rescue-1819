@@ -21,9 +21,7 @@
  --roasted: #262626;
 
  /* Fonts */
- --font-nt-sans: "Nunito sans", Roboto, "Helvetica Neue", Calibri;
  --font-indie-flower: 'Indie Flower', Roboto, "Helvetica Neue", Calibri;
- --font-pacifio: 'Pacifico', Roboto, "Helvetica Neue", Calibri;
  --font-oleo-script-swash-caps: 'Oleo Script Swash Caps', Roboto, "Helvetica Neue", Calibri;
 
  /* Style */
@@ -146,7 +144,6 @@ small {font-size: 80%;}
 /********************************
 *         7. Burgers            *
 *********************************/
-
 .price {
   font-size: 3rem;
   text-align: right;
